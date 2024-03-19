@@ -45,6 +45,8 @@ FROM Customers;
 
 CREATE VIEW Collaborator AS
 SELECT CustomerID AS CollaboratorID,
+       FirstName AS CollaboratorFirstName,
+       LastName AS CollaboratorLastName
 FROM Customers;
 
 DESCRIBE Collaborator;
@@ -53,4 +55,3 @@ DESCRIBE Collaborator;
 SELECT *
 FROM Collaborator
 LIMIT 5;
-
