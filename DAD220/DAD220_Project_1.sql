@@ -28,14 +28,13 @@ CREATE TABLE RMA (RMAID INT, OrderID INT, Step VARCHAR(50),
                                                              PRIMARY KEY (RMAID),
                   FOREIGN KEY (OrderID) REFERENCES Orders(OrderID));
 
-
 -- Selecting the count of customers that are located in Framingham, Massachussetts --
 
 SELECT COUNT(*)
 FROM Customers
 INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID
 WHERE City = "Framingham"
-       AND State = "Massachusetts";
+    AND State = "Massachusetts";
 
 -- Selecting all customers that are in the state of Massachusetts --
 
@@ -66,27 +65,37 @@ WHERE City = 'Woonsocket';
 
 -- Retrieve status, step of RMA record with OrderID of 5175 and update it --
 
-SELECT Status, Step
+SELECT Status,
+       Step
 FROM RMA
 WHERE OrderID = 5175;
 
+
 UPDATE RMA
-SET Status = 'Complete', Step = 'Credit Customer Account'
+SET Status = 'Complete',
+    Step = 'Credit Customer Account'
 WHERE OrderID = 5175;
 
 -- Delete all records from RMA where Reason = 'Rejected' --
 
-DELETE FROM RMA
+DELETE
+FROM RMA
 WHERE Reason = 'Rejected';
 
--- Create view "Collaborators" where all instances of "Customer" are renamed to "Collaborator" -- 
+-- Create view "Collaborators" where all instances of "Customer" are renamed to "Collaborator" --
+
 CREATE VIEW Collaborator AS
-SELECT CustomerID AS CollaboratorID, FirstName, LastName, Street, City, State, ZipCode, Telephone
+SELECT CustomerID AS CollaboratorID,
+       FirstName,
+       LastName,
+       Street,
+       City,
+       State,
+       ZipCode,
+       Telephone
 FROM Customers;
 
 -- Export Orders data to .CSV file --
 
-SELECT * FROM Orders
-INTO OUTFILE '/home/codio/workspace/Order-Results02.csv'
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\r\n';
+SELECT *
+FROM Orders INTO OUTFILE '/home/codio/workspace/Order-Results02.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
