@@ -28,7 +28,7 @@ CREATE TABLE RMA (RMAID INT, OrderID INT, Step VARCHAR(50),
                                                              PRIMARY KEY (RMAID),
                   FOREIGN KEY (OrderID) REFERENCES Orders(OrderID));
 
--- Selecting the count of customers that are located in Framingham, Massachussetts --
+-- Selecting the count of customers that are located in the city of Framingham, Massachussetts --
 
 SELECT COUNT(*)
 FROM Customers
@@ -42,7 +42,7 @@ SELECT *
 FROM Customers
 WHERE State = 'Massachusetts';
 
--- Insert 4 new records into Customers, and Orders tables --
+-- Insert 4 new records into Customers, Orders tables --
 
 INSERT INTO Customers
 VALUES(100004, 'Luke', 'Skywalker', '15 Maiden Lane', 'New York', 'NY', '10222', '212-555-1234'),
@@ -95,7 +95,7 @@ SELECT CustomerID AS CollaboratorID,
        Telephone
 FROM Customers;
 
--- Export Orders data to .CSV file --
+-- Export Orders table records to .CSV file --
 
 SELECT *
 FROM Orders INTO OUTFILE '/home/codio/workspace/Order-Results02.csv' FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
